@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Maps port 27017 to localhost (for local development)
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mern-network
+
+  server:
+    build: ./server
+    container_name: mern-server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/mern-blog # Connects to 'mongodb' service
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - mongodb
+    volumes:
+      - ./server/uploads:/app/uploads # Persist uploads
+    networks:
+      - mern-network
+
+  client:
+    build: ./client
+    container_name: mern-client
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000/api # Browser accesses server via localhost
+      - NEXT_PUBLIC_UPLOAD_URL=http://localhost:5000
+    depends_on:
+      - server
+    networks:
+      - mern-network
+
+volumes:
+  mongo-data:
+
+networks:
+  mern-network:
+    driver: bridge
