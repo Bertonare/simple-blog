@@ -1,8 +1,8 @@
 #!/bin/bash
-API_URL="http://172.31.80.1:5000/api"
+API_URL="http://localhost:5000/api"
 
 echo "Checking Root..."
-curl -v http://172.31.80.1:5000/
+curl -v http://localhost:5000/
 
 RAND=$((RANDOM))
 echo -e "\nRegistering..."

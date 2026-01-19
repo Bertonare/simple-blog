@@ -28,7 +28,11 @@ services:
       - mern-network
 
   client:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+        - NEXT_PUBLIC_UPLOAD_URL=http://localhost:5000
     container_name: mern-client
     ports:
       - "3000:3000"
