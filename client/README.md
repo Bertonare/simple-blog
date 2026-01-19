@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Environment Variables
+
+Before running the application, you need to configure the environment variables. Create a `.env.local` file in the client directory with the following variables:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_UPLOAD_URL=http://localhost:5000
+```
+
+These variables tell the Next.js frontend where to find the backend API server.
+
+> **Note**: Environment variables prefixed with `NEXT_PUBLIC_` are exposed to the browser and are baked into the JavaScript bundle at build time.
+
 ## Getting Started
 
 First, run the development server:
