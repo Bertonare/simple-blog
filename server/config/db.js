@@ -5,8 +5,10 @@ const connectDB = async () => {
         const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mern-blog');
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);
+        if (process.env.NODE_ENV !== 'test') {
+            console.error(`Error: ${error.message}`);
+            process.exit(1);
+        }
     }
 };
 
