@@ -1,0 +1,5 @@
+playwright
+pytest
+pytest-playwright
+pymongo
+pytest-html
