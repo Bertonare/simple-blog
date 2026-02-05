@@ -6,6 +6,8 @@ node_modules/
 # Testing
 coverage/
 server/test/reports/
+test/e2e-selenium/.deps/
+test/e2e-selenium/target/
 
 # Next.js
 .next/
